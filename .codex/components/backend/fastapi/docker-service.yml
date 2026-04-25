@@ -1,0 +1,17 @@
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    expose:
+      - "8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - UPLOAD_DIR=/app/data/uploads
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s

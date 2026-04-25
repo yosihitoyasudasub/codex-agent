@@ -30,7 +30,5 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 RUN mkdir -p /app/data && chown nextjs:nodejs /app/data
 
 USER nextjs
-
 EXPOSE 3000
-
 CMD ["node", "server.js"]
